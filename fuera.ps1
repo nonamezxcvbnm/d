@@ -1,4 +1,4 @@
-﻿$FileName = "$env:USERNAME-$(get-date -f yyyy-MM-dd_hh-mm).txt"
+$FileName = "$env:USERNAME-$(get-date -f yyyy-MM-dd_hh-mm).txt"
 
 function Get-Creds {
 do{
